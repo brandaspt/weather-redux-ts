@@ -37,7 +37,7 @@ const SearchView = () => {
         onKeyDown={handleSubmit}
       />
       {weatherData && (
-        <div className="search-results">
+        <div className="search-results mb-4">
           <div className="d-flex">
             <h2 className="me-2">
               {weatherData.name}, {weatherData.sys.country}
