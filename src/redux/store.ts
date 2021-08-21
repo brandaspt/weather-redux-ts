@@ -5,13 +5,11 @@ import storage from "redux-persist/lib/storage"
 import mainReducer from "./reducers/mainReducer"
 
 export interface IReduxStore {
-  favouriteCities: {
-    [key: string]: boolean
-  }
+  favouriteCities: number[]
 }
 
 export const initialState: IReduxStore = {
-  favouriteCities: {},
+  favouriteCities: [],
 }
 
 const persistConfig = {

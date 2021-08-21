@@ -6,6 +6,7 @@ import Moment from "react-moment"
 import "./SearchView.css"
 import { IForecastData } from "../../types/forecastData"
 import { Card } from "react-bootstrap"
+import { ToggleFavourite } from "../ToggleFavourite/ToggleFavourite"
 
 const SearchView = () => {
   const [city, setCity] = useState("")
@@ -37,9 +38,12 @@ const SearchView = () => {
       />
       {weatherData && (
         <div className="search-results">
-          <h2>
-            {weatherData.name}, {weatherData.sys.country}
-          </h2>
+          <div className="d-flex">
+            <h2 className="me-2">
+              {weatherData.name}, {weatherData.sys.country}
+            </h2>
+            <ToggleFavourite cityId={weatherData.id} />
+          </div>
           <Moment format="ddd, D MMM, HH:mm">{weatherData.dt * 1000}</Moment>
           <p className="description">{weatherData.weather[0].description}</p>
           <div className="d-flex align-items-center">
@@ -55,7 +59,7 @@ const SearchView = () => {
               <p>Wind: {weatherData.wind.speed} km/h</p>
             </div>
           </div>
-          <h2 className="m-0">2 Day / 3 Hour Forecast</h2>
+          <h2 className="m-0 mb-3 text-center text-secondary">2 Day / 3 Hour Forecast:</h2>
           <div className="forecast d-flex flex-nowrap">
             {forecastData?.list.map(item => (
               <Card key={item.dt}>
