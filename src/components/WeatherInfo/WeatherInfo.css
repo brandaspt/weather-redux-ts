@@ -1,34 +1,24 @@
-.SearchView input {
-  border: none;
-  border-radius: 30px;
-  padding: 10px;
-  width: 300px;
-  filter: drop-shadow(0px 0px 2px black);
-  outline: none;
-  color: rgb(63, 63, 63);
-}
-.SearchView p {
+.WeatherInfo p {
   margin: 0;
 }
 
-.SearchView .search-results {
+.WeatherInfo {
   background-color: #ffffffa7;
   filter: drop-shadow(0px 0px 2px black);
   padding: 20px;
-  width: 95vw;
   border-radius: 5px;
 }
 
-.SearchView .search-results .description {
+.WeatherInfo .description {
   text-transform: capitalize;
   display: block;
 }
 
-.SearchView .forecast {
+.WeatherInfo .forecast {
   width: 100%;
   overflow-x: scroll;
 }
-.SearchView .forecast > * {
+.WeatherInfo .forecast > * {
   flex-shrink: 0;
   width: 170px;
   margin: 5px 10px;

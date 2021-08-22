@@ -1,28 +1,58 @@
-import { createStore } from "redux"
+import { createStore, applyMiddleware, combineReducers } from "redux"
+import thunk from "redux-thunk"
 import { persistStore, persistReducer } from "redux-persist"
 import storage from "redux-persist/lib/storage"
+import { composeWithDevTools } from "redux-devtools-extension"
 
-import mainReducer from "./reducers/mainReducer"
+import { IFavouriteObj } from "../types/favouriteObj"
+import { IWeatherData } from "../types/weatherData"
+
+import favouritesReducer from "./reducers/favouritesReducer"
+import weatherDataReducer from "./reducers/weatherDataReducer"
+import canvasReducer from "./reducers/canvasReducer"
+import { IForecastData } from "../types/forecastData"
 
 export interface IReduxStore {
-  favouriteCities: number[]
+  favourites: {
+    cities: IFavouriteObj[]
+  }
+  weatherData: {
+    currentWeather: IWeatherData | null
+    forecast5Day: IForecastData | null
+  }
+  canvas: {
+    show: boolean
+  }
 }
 
 export const initialState: IReduxStore = {
-  favouriteCities: [],
+  favourites: {
+    cities: [],
+  },
+  weatherData: {
+    currentWeather: null,
+    forecast5Day: null,
+  },
+  canvas: {
+    show: false,
+  },
 }
+
+const mainReducer = combineReducers({
+  favourites: favouritesReducer,
+  weatherData: weatherDataReducer,
+  canvas: canvasReducer,
+})
 
 const persistConfig = {
   key: "root",
   storage,
+  blacklist: ["weatherData", "canvas"],
 }
 
 const persistedReducer = persistReducer(persistConfig, mainReducer)
 
-export const store = createStore(
-  persistedReducer,
-  (window as any).__REDUX_DEVTOOLS_EXTENSION__ && (window as any).__REDUX_DEVTOOLS_EXTENSION__()
-)
+export const store = createStore(persistedReducer, composeWithDevTools(applyMiddleware(thunk)))
 export const persistor = persistStore(store)
 
 export type AppDispatch = typeof store.dispatch

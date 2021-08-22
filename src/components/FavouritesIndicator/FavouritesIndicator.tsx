@@ -1,12 +1,13 @@
 // Components
 import { AiFillStar } from "react-icons/ai"
-import { useAppSelector } from "../../redux/hooks"
+import { useSelector } from "react-redux"
+import { IReduxStore } from "../../redux/store"
 
 // Styles
 import "./FavouritesIndicator.css"
 
 const FavouritesIndicator = () => {
-  const { favouriteCities } = useAppSelector(state => state)
+  const favouriteCities = useSelector((state: IReduxStore) => state.favourites.cities)
   return (
     <div className="FavouritesIndicator">
       <AiFillStar />

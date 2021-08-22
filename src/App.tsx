@@ -1,12 +1,15 @@
+import FavouritesCanvas from "./components/FavouritesCanvas/FavouritesCanvas"
 import NavBar from "./components/NavBar/NavBar"
-import SearchView from "./components/SearchView/SearchView"
-import { Route } from "react-router-dom"
+import Search from "./components/Search/Search"
+import WeatherInfo from "./components/WeatherInfo/WeatherInfo"
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <Route component={SearchView} />
+      <Search />
+      <WeatherInfo />
+      <FavouritesCanvas />
     </div>
   )
 }

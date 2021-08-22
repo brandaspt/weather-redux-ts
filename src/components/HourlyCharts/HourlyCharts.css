@@ -1,0 +1,9 @@
+.HourlyCharts .chart-bg {
+  background-color: rgba(255, 255, 255, 0.7);
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin-bottom: 25px;
+}
