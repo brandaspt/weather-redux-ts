@@ -46,19 +46,15 @@ const WeatherInfo = () => {
           {forecastData?.list.map(item => (
             <Card key={item.dt}>
               <Card.Img variant="top" src={`http://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`} />
-              <Card.Body className="text-center">
-                <Card.Title as="h1">{item.main.temp.toFixed(0)} &#8451;</Card.Title>
+              <Card.Body className="text-center p-1 d-flex flex-column">
+                <Card.Title as="h2">{item.main.temp.toFixed(0)} &#8451;</Card.Title>
                 <Card.Text as="small" className="description">
                   {item.weather[0].description}
                 </Card.Text>
-                <Card.Text as="small" className="description">
-                  Humidity: {item.main.humidity} %
-                </Card.Text>
-                <Card.Text as="small" className="description">
-                  Wind: {currentWeatherData.wind.speed} km/h
-                </Card.Text>
+                <Card.Text as="small">Humidity: {item.main.humidity} %</Card.Text>
+                <Card.Text as="small">Wind: {currentWeatherData.wind.speed} km/h</Card.Text>
               </Card.Body>
-              <Card.Footer as="small" className="text-center bg-dark text-white fw-bold">
+              <Card.Footer as="small" className="text-center bg-dark text-white fw-bold p-1">
                 <Moment format="D MMM, HH:mm">{item.dt * 1000}</Moment>
               </Card.Footer>
             </Card>

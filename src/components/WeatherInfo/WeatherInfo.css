@@ -20,7 +20,7 @@
 }
 .WeatherInfo .forecast > * {
   flex-shrink: 0;
-  width: 170px;
+  width: fit-content;
   margin: 5px 10px;
   background-color: rgba(0, 0, 0, 0.116);
   border: none;

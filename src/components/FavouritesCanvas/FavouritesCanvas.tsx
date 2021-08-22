@@ -1,12 +1,12 @@
 import { ListGroup, Offcanvas } from "react-bootstrap"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { get5DayForecastAction, getCurrentWeatherAction, toggleCanvasAction } from "../../redux/actions/actions"
-import { IReduxStore } from "../../redux/store"
+import { useAppSelector } from "../../redux/hooks"
 import { ToggleFavourite } from "../ToggleFavourite/ToggleFavourite"
 
 const FavouritesCanvas = () => {
-  const isShowing = useSelector((state: IReduxStore) => state.canvas.show)
-  const favouriteCities = useSelector((state: IReduxStore) => state.favourites.cities)
+  const isShowing = useAppSelector(state => state.canvas.show)
+  const favouriteCities = useAppSelector(state => state.favourites.cities)
   const dispatch = useDispatch()
   return (
     <>
@@ -18,6 +18,7 @@ const FavouritesCanvas = () => {
           <ListGroup>
             {favouriteCities.map(city => (
               <ListGroup.Item
+                key={city.cityId}
                 action
                 className="d-flex"
                 onClick={() => {
