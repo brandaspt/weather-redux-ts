@@ -26,7 +26,9 @@ const WeatherInfo = () => {
             }}
           />
         </div>
-        <Moment format="ddd, D MMM, HH:mm">{currentWeatherData.dt * 1000}</Moment>
+        <Moment format="ddd, D MMM, HH:mm" utc add={{ seconds: currentWeatherData.timezone }}>
+          {currentWeatherData.dt * 1000}
+        </Moment>
         <p className="description">{currentWeatherData.weather[0].description}</p>
         <div className="d-flex align-items-center">
           <div className="d-flex align-items-center">
@@ -55,7 +57,9 @@ const WeatherInfo = () => {
                 <Card.Text as="small">Wind: {currentWeatherData.wind.speed} km/h</Card.Text>
               </Card.Body>
               <Card.Footer as="small" className="text-center bg-dark text-white fw-bold p-1">
-                <Moment format="D MMM, HH:mm">{item.dt * 1000}</Moment>
+                <Moment format="D MMM, HH:mm" utc add={{ s: forecastData.city.timezone }}>
+                  {item.dt * 1000}
+                </Moment>
               </Card.Footer>
             </Card>
           ))}
